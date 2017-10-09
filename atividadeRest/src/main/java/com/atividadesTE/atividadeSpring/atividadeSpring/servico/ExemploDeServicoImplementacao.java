@@ -68,17 +68,20 @@ public class ExemploDeServicoImplementacao implements ExemploDeServico{
 	public void exemploTransacao() {
 		
 	}
-
+	
+	@Transactional
 	public List<Professor> buscaProfessor(String nome) {
 		
 		return professorRepositoro.buscarProfessor(nome);
 	}
 
+	@Transactional
 	public Professor buscarPorId(Long i) {
 		
 		return professorRepositoro.findByMatricula(i);
 	}
 
+	@Transactional
 	public List<Professor> buscaTodosProfessores() {
 		List<Professor> listaProfessor = new ArrayList<Professor>();
 		for(Professor p: professorRepositoro.findAll()){
@@ -86,7 +89,8 @@ public class ExemploDeServicoImplementacao implements ExemploDeServico{
 		}
 		return listaProfessor;
 	}
-
+	
+	@Transactional
 	public Professor salvarProfessor(Professor p) {
 		return professorRepositoro.save(p);
 		

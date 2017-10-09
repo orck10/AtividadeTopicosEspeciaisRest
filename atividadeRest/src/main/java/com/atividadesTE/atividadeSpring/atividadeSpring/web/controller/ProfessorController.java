@@ -56,14 +56,13 @@ public class ProfessorController {
 		return new ResponseEntity<Collection<Professor>>(exemploDeServico.buscaTodosProfessores(), HttpStatus.OK);
 	}
 	
-	// Voce pode informar o metodo e o tipo de retorno produzido
-		@RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-		@JsonView(View.All.class)
-		// E possivel indicar o status por anotacao, mas sera fixo, sem possibilidade de tratar erros
-		@ResponseStatus(HttpStatus.CREATED)
-		public Professor save(@RequestBody Professor professor, HttpServletRequest request, HttpServletResponse response) {
-			professor = exemploDeServico.salvarProfessor(professor);
-			response.addHeader("Location", request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/professor/getById?id=" + professor.getMatricula());
-			return professor;
-		}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@JsonView(View.All.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public Professor save(@RequestBody Professor professor, HttpServletRequest request, HttpServletResponse response) {
+		professor = exemploDeServico.salvarProfessor(professor);
+		response.addHeader("Location", request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/professor/getById?id=" + professor.getMatricula());
+		return professor;
+	}
 }
